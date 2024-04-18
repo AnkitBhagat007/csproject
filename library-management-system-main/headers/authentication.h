@@ -81,7 +81,7 @@ struct Student fetchData(char email[50])
 
     fread(&student, sizeof(struct Student), 1, file);
     fclose(file);
-    printf("\nj\nj\nl%d\nj",student.nBooks);
+    
     return student;
 }
 

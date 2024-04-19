@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "./data-types.h"
 
 
 void addBook()
@@ -12,8 +11,8 @@ void addBook()
     scanf("%s",&(new_book.name));
     printf("\nname of the authour : ");
     scanf("%s",&(new_book.author));
-    new_book.issueDate=20240411;
-    new_book.dueDate=20240511;
+    strcmp(new_book.issueDate,formatIssueDate());
+    
 
     FILE *file;
     file = fopen("./library-data/libraryBook.bin", "ab");
@@ -26,26 +25,28 @@ void addBook()
 }
 
 
-void sendMail()
-{
-    char temp_mail[50],subject[50];
-            printf("send message to email : ");
-            scanf("%s",temp_mail);
-            printf("subject of the mail : ");
-            scanf("%s",subject);
+// void sendMail()
+// {
+//     char temp_mail[50],subject[50];
+//     printf("send message to email : ");
+//     scanf("%s",temp_mail);
+//     printf("subject of the mail : ");
+//     scanf("%s",subject);
 
-            FILE *file;
-            char fileName[50] ;
-            sprintf(fileName,"./message/%s.bin",temp_mail);
-            file=fopen(fileName,"ab");
-            fwrite(subject,sizeof(subject),1,file);
+//     FILE *file;
+//     char fileName[50] ;
+//     sprintf(fileName,"./message/%s.bin",temp_mail);
+//     file=fopen(fileName,"ab");
+//     fwrite(subject,sizeof(subject),1,file);
 
-            fclose(file);
-}
+//     fclose(file);
+
+    
+//     printf("\n\nEmail sent sucessfully\n");
+// }
 
 
-void remove_book(int book_number)
-{
+void remove_book(int book_number){
 
     FILE *fp,*fp1;
     struct Book t,t1;
@@ -53,7 +54,7 @@ void remove_book(int book_number)
 
     char fileName[50] = "";
             
-            sprintf(fileName, "./library-data/libraryBook.bin");
+    sprintf(fileName, "./library-data/libraryBook.bin");
             
 
     fp=fopen(fileName,"rb");
@@ -103,6 +104,8 @@ void remove_book(int book_number)
     }
     fclose(fp);
     fclose(fp1);
+
+    printf("\n\nBook has been removed successfully from the library.\n");
 }
 
 
@@ -132,11 +135,9 @@ void print_users()
       }
       closedir(dr); //close all directory
    }
-   
 }
 
-void Modify_book(int book_number)
-{
+void Modify_book(int book_number){
     char modify_name[50],modify_author[50];
 
     printf("Modifed name of the book : ");
@@ -206,8 +207,7 @@ void Modify_book(int book_number)
     fclose(fp1);
 }
 
-void delete_user(int user_number)
-{
+void delete_user(int user_number){
 
     DIR *dr;
    struct dirent *en;
